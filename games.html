@@ -1,6 +1,7 @@
 <title>Frost Chicken | Game Sites</title>
 <h1>Games</h1>
 <button onclick="openDuckmath()">Open Duckmath (In this tab)</button>
+<button onclick="openSelenite()">Open Selenite (In this tab)</button>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 body {
@@ -44,11 +45,15 @@ iframe {
 
 </style>
         <body>
-            <iframe id="duckFrame" class="duck-frame" src="" allowfullscreen></iframe>
+            <iframe id="frame" class="frame" src="" allowfullscreen></iframe>
 
             <script>
                 function openDuckmath() {
-                    const frame = document.getElementById('duckFrame');
+                    const frame = document.getElementById('frame');
                     frame.src = 'https://duckmath.org';
+                }
+                function openSelenite() {
+                    const frame = document.getElementById('frame');
+                    frame.src = 'https://selenite.cc';
                 }
             </script>
