@@ -88,6 +88,24 @@ openBtn.addEventListener("click", openBlobUrl);
 </html>
 
 <script>
-  const encoded = btoa(html);
-  alert(encoded);
+async function blobToBase64(blob) {
+  const buffer = await blob.arrayBuffer();
+  let binary = '';
+  const bytes = new Uint8Array(buffer);
+  const chunkSize = 0x8000; // process in chunks for large blobs
+
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunkSize));
+  }
+
+  return btoa(binary); // Base64 string
+}
+
+// Example usage:
+const myBlob = new Blob(["Hello World"], { type: "text/plain" });
+
+blobToBase64(myBlob).then(base64String => {
+  console.log("Base64 Encoded:", base64String);
+});
+
 </script>
