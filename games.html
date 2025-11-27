@@ -94,17 +94,18 @@ button {
         // Define games as a list - add new games here
         const games = [
             {
-                id: 'capybara-clicker',
-                name: 'Capybara Clicker',
-                icon: 'https://play-lh.googleusercontent.com/qPhicF9zFY_Ya0xQm9RsTcCIKnjTb2gW5lAvzow6WgiodIOBMKyeAHaS4bh2WZN9BCU',
-                href: 'Games/capybara-clicker.html'
-            },
-            {
                 id: '1v1lol',
                 name: '1v1.lol',
                 icon: 'https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/1v1.lol-old.webp',
                 href: 'Games/1v1lol.html'
+            },
+            {
+                id: 'capybara-clicker',
+                name: 'Capybara Clicker',
+                icon: 'https://play-lh.googleusercontent.com/qPhicF9zFY_Ya0xQm9RsTcCIKnjTb2gW5lAvzow6WgiodIOBMKyeAHaS4bh2WZN9BCU',
+                href: 'capybara-clicker.html'
             }
+
             // Add more games here in the same format
         ];
 
@@ -113,7 +114,7 @@ button {
             const gameGrid = document.getElementById('gameGrid');
             games.forEach(game => {
                 const link = document.createElement('a');
-                link.href = game.href;
+                link.href = "/Games/" + game.id + ".html";
                 link.className = 'app-icon-card';
                 link.setAttribute('data-testid', `app_icon_${game.id}`);
                 
