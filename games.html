@@ -1,262 +1,36 @@
-<div id="games" class="page active">
-    <h1>Games</h1>
+<title>Frost Chicken | Games</title>
+<h1>Games</h1>
 
-    <div class="search-box">
-        <input class="search-input" id="gameSearch" placeholder="Search games..." oninput="filterGames()">
-    </div>
-
-    <div class="games-grid" id="gameGrid">
-       <div class="game-card" onclick="randomGame()" style="border-color: rgb(255, 204, 0); transform: rotateY(0deg) rotateX(0deg) scale(1);">
-    <img src="random.gif" style="object-fit:cover;">
-    <div class="game-title">Random Game</div>
+<div class="gameGrid" id="gameGrid">
+<button class="capybaraClicker" id="capybaraClicker">Capybara Clicker</button>
 </div>
 
-        
-        <div class="game-card" data-title="retro bowl" onclick="openGame('Retrobowl.html')" style="transform: rotateY(0deg) rotateX(0deg) scale(1);">
-            <img src="retro_bowl_logo.png"><div class="game-title">Retro Bowl</div>
-        </div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+body {
+    background-color: #ADD8E6;
+    font-family: "Fredoka", sans-serif;
+    text-align: center;
+    padding-top: 20px;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
 
-        <div class="game-card" data-title="cookie clicker" onclick="openGame('cookieclicker.html')">
-            <img src="cookie.png"><div class="game-title">Cookie Clicker</div>
-        </div>
-
-        <div class="game-card" data-title="slope" onclick="openGame('Slope.html')">
-            <img src="Slope.png"><div class="game-title">Slope</div>
-        </div>
-
-        <div class="game-card" data-title="granny" onclick="openGame('granny.html')" style="transform: rotateY(0deg) rotateX(0deg) scale(1);">
-            <img src="granny.png"><div class="game-title">Granny</div>
-        </div>
-
-        <div class="game-card" data-title="blood money" onclick="openGame('Bloodmoney.html')">
-            <img src="Bloodmoney.png"><div class="game-title">Bloodmoney</div>
-        </div>
-
-        <div class="game-card" data-title="burrito" onclick="openGame('burrito.html')" style="transform: rotateY(0deg) rotateX(0deg) scale(1);">
-            <img src="burrito.png"><div class="game-title">Burrito</div>
-        </div>
-
-        <div class="game-card" data-title="crazy cattle 3d" onclick="openGame('Crazycattle3d.html')" style="transform: rotateY(0deg) rotateX(0deg) scale(1);">
-            <img src="Crazycattle3d.png"><div class="game-title">Crazy Cattle 3D</div>
-        </div>
-
-        <div class="game-card" data-title="baldis basics" onclick="openGame('Baldi1.html')" style="transform: rotateY(0deg) rotateX(0deg) scale(1);">
-            <img src="baldi1.png"><div class="game-title">Baldis Basics</div>
-        </div>
-
-        <div class="game-card" data-title="baldis basics classic remastered" onclick="openGame('Baldi2.html')" style="transform: rotateY(0deg) rotateX(0deg) scale(1);">
-            <img src="baldi2.png"><div class="game-title">Baldis Basics Classic Remastered</div>
-        </div>
-
-        <div class="game-card" data-title="baldis basics plus" onclick="openGame('Baldi3.html')">
-            <img src="baldi3.png"><div class="game-title">Baldis Basics Plus</div>
-        </div>
-
-        <div class="game-card" data-title="basketrandom" onclick="openGame('Basketrandom.html')">
-            <img src="Basketrandom.png"><div class="game-title">Basketrandom</div>
-        </div>
-
-        <div class="game-card" data-title="boxingrandom" onclick="openGame('Boxingrandom.html')" style="transform: rotateY(0deg) rotateX(0deg) scale(1);">
-            <img src="Boxingrandom.png"><div class="game-title">Boxing Random</div>
-        </div>
-
-        <div class="game-card" data-title="basketbros" onclick="openGame('Basketbros.html')" style="transform: rotateY(0deg) rotateX(0deg) scale(1);">
-            <img src="Basketbros.png"><div class="game-title">Basketbros</div>
-        </div>
-
-
-        <div class="game-card" data-title="footballbros" onclick="openGame('Footballbros.html')">
-            <img src="Footballbros.png"><div class="game-title">Footballbros</div>
-        </div>
-
-        <div class="game-card" data-title="ultrakill" onclick="openGame('ultrakill.html')">
-        <img src="ultrakill.png">
-        <div class="game-title">Ultrakill</div>
-        </div>
-
-        <div class="game-card" data-title="minecraft" onclick="openGame('Minecraft.html')">
-            <img src="Minecraft.png"><div class="game-title">Minecraft</div>
-        </div>
-
-        <div class="game-card" data-title="brotato" onclick="openGame('Brotato.html')">
-        <img src="Brotato.png">
-        <div class="game-title">Brotato</div>
-        </div>
-
-        <div class="game-card" data-title="capybaraclicker" onclick="openGame('Capybaraclicker.html')">
-        <img src="Capybaraclicker.png"><div class="game-title">Capybara Clicker</div>
-        </div>
-
-        <div class="game-card" data-title="blockblast" onclick="openGame('Blockblast.html')">
-        <img src="Blockblast.png">
-        <div class="game-title">Block Blast</div>
-        </div>
-
-        <div class="game-card" data-title="Ovo" onclick="openGame('OVO.html')">
-        <img src="OVO.png">
-        <div class="game-title">OvO</div>
-        </div>
-        
-        <div class="game-card" data-title="Ovo 2" onclick="openGame('OvO 2.html')">
-        <img src="Ovo 2.png">
-        <div class="game-title">OvO 2</div>
-        </div>
-        
-                <div class="game-card" data-title="Ovo 3" onclick="openGame('oVo3.html')">
-        <img src="oVo3.png">
-        <div class="game-title">Ovo 3</div>
-        </div>
-        
-                <div class="game-card" data-title="Idle breakout" onclick="openGame('idlr.html')">
-        <img src="idlr.png">
-        <div class="game-title">Idle breakout</div>
-        </div>
-                        <div class="game-card" data-title="Idle mining empire" onclick="openGame('Idleminer.html')">
-        <img src="Idleminer.png">
-        <div class="game-title">Idle miner empire</div>
-        </div>
-        
-                        <div class="game-card" data-title="Bad monday simulator" onclick="openGame('Badmondaysim.html')">
-        <img src="Badmondaysim.png">
-        <div class="game-title">Bad time simulator</div>
-        </div>
-                        <div class="game-card" data-title="Ragdoll hit" onclick="openGame('Ragdollhit.html')">
-        <img src="Ragdollhit.png">
-        <div class="game-title">Ragdoll hit</div>
-        </div>
-                
-                        <div class="game-card" data-title="Cluster rush" onclick="openGame('Cluster.html')">
-        <img src="Cluster.png">
-        <div class="game-title">Cluster rush</div>
-        </div>
-                      
-                        <div class="game-card" data-title="Hollow knight" onclick="openGame('Hollowknight.html')">
-        <img src="Hollowknight.png">
-        <div class="game-title">Hollow knight</div>
-        </div>
-                        <div class="game-card" data-title="Granny 2" onclick="openGame('Granny2.html')">
-        <img src="Granny2.png">
-        <div class="game-title">Granny 2</div>
-        </div>
-        
-                        <div class="game-card" data-title="Granny 3" onclick="openGame('Granny3.html')">
-        <img src="Granny3.png">
-        <div class="game-title">Granny 3</div>
-        </div>
-        
-                        <div class="game-card" data-title="Geometry dash lite" onclick="openGame('Geometry dash.html')">
-        <img src="Geometry dash.png">
-        <div class="game-title">Geometry dash</div>
-        </div>
-        
-                        <div class="game-card" data-title="Snow Rider 3D" onclick="openGame('Snow rider 3d.html')">
-        <img src="Snow rider 3d.png">
-        <div class="game-title">Snow Rider 3D</div>
-        </div>
-        
-                        <div class="game-card" data-title="Snow Rider 3D" onclick="openGame('Monkeymart.html')">
-        <img src="Monkeymart.png">
-        <div class="game-title">Monkey mart</div>
-        </div>
-        
-                        <div class="game-card" data-title="five nights at freedys 1" onclick="openGame('Fnaf1.html')">
-        <img src="Fnaf1.png">
-        <div class="game-title">Five nights at freedys 1</div>
-        </div>
-        
-                        <div class="game-card" data-title="five nights at freedys 2" onclick="openGame('Fnaf2.html')">
-        <img src="Fnaf2.png">
-        <div class="game-title">Five nights at freedys 2</div>
-        </div>
-        
-                        <div class="game-card" data-title="five nights at freedys 3" onclick="openGame('Fnaf3.html')">
-        <img src="Fnaf3.png">
-        <div class="game-title">Five nights at freedys 3</div>
-        </div>
-        
-                        <div class="game-card" data-title="five nights at freedys 4" onclick="openGame('Fnaf4.html')">
-        <img src="Fnaf4.png">
-        <div class="game-title">Five nights at freedys 4</div>
-        </div>
-        
-                                <div class="game-card" data-title="Ragdoll archers" onclick="openGame('Ragdollarchers.html')">
-        <img src="Ragdollarchers.png">
-        <div class="game-title">Ragdoll archers</div>
-        </div>
-        
-                                <div class="game-card" data-title="Drive mad" onclick="openGame('Drive mad.html')">
-        <img src="Drive mad.png">
-        <div class="game-title">Drive mad</div>
-        </div>
-        
-                                <div class="game-card" data-title="Coreball" onclick="openGame('Coreball.html')">
-        <img src="Coreball.png">
-        <div class="game-title">Coreball</div>
-        </div>
-        
-                                <div class="game-card" data-title="Paparapa" onclick="openGame('Paparapa.html')">
-        <img src="Paparapa.png">
-        <div class="game-title">Paparapa the rappa</div>
-        </div>
-        
-                                <div class="game-card" data-title="Bitlife" onclick="openGame('Bitlife.html')">
-        <img src="Bitlife.png">
-        <div class="game-title">Bitlife</div>
-        </div>
-        
-                                <div class="game-card" data-title="Bowmasters" onclick="openGame('Bowmasters.html')">
-        <img src="Bowmasters.png">
-        <div class="game-title">Bowmasters</div>
-        </div>
-        
-                                <div class="game-card" data-title="Doge miner" onclick="openGame('Doge miner.html')">
-        <img src="Doge miner.png">
-        <div class="game-title">Doge miner</div>
-        </div>
-        
-                                <div class="game-card" data-title="Elastic man" onclick="openGame('Elastic.html')">
-        <img src="Elastic.png">
-        <div class="game-title">Elastic man</div>
-        </div>
-        
-                                        <div class="game-card" data-title="Gobble" onclick="openGame('Gobble.html')">
-        <img src="Gobble.png">
-        <div class="game-title">Gobble</div>
-        </div>
-        
-                                        <div class="game-card" data-title="Escape Road" onclick="openGame('Escape road.html')" style="transform: rotateY(0deg) rotateX(0deg) scale(1);">
-        <img src="Escape road.png">
-        <div class="game-title">Escape Road</div>
-        </div>
-        
-                                        <div class="game-card" data-title="People playground" onclick="openGame('People playground.html')">
-        <img src="People playground.png">
-        <div class="game-title">People playground</div>
-        </div>
-        
-                                        <div class="game-card" data-title="Pizza tower" onclick="openGame('Pizza tower.html')">
-        <img src="Pizza tower.png">
-        <div class="game-title">Pizza Tower</div>
-        </div>
-                                        <div class="game-card" data-title="Bad parenting" onclick="openGame('Badparenting.html')" style="transform: rotateY(0deg) rotateX(0deg) scale(1);">
-        <img src="Badparenting.png">
-        <div class="game-title">Bad parenting</div>
-        </div>
-                                    
-                                                 <div class="game-card" data-title="That's Not my neighbor " onclick="openGame('Notmyneighbor.html')">
-        <img src="Notmyneighbor.png">
-        <div class="game-title">That's Not my neighbor</div>
-        </div>               
-        
-                                                         <div class="game-card" data-title="Minecraft 1.8.8 " onclick="openGame('Minecraft8.html')">
-        <img src="Minecraft8.png">
-        <div class="game-title">Minecraft 1.8.8</div>
-        </div>          
-                                                                 <div class="game-card" data-title="Adofai" onclick="openGame('Adofai.html')" style="transform: rotateY(0deg) rotateX(0deg) scale(1);">
-        <img src="Adofai.png">
-        <div class="game-title">A dance of fire and ice</div>
-        </div>                     
-                                          
-        
-    </div>
-</div>
+button {
+    background-color: #FFFFFF;
+    border: none;
+    color: #000000;
+    font-family: "Fredoka", sans-serif;
+    padding: 30px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
