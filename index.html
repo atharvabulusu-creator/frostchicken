@@ -1,0 +1,474 @@
+<title>Frost Chicken</title>
+<h1>Frost Chicken</h1>
+<h1 class="cyclingText" id="cyclingText">Sup</h1>
+<button class="Games" onclick="location.href='games.html'">Game Sites</button>
+<button class="Apps" onclick="location.href='apps.html'">Apps and Proxies</button>
+<button class="About" onclick="location.href='about.html'">About</button>
+
+<div class="snow-ground" id="snowGround"></div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+body {
+    background-color: #ADD8E6;
+    font-family: "Fredoka", sans-serif;
+    text-align: center;
+    padding-top: 20px;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+h1.cyclingText {
+    font-size: 28px;
+    font-weight: 600;
+    opacity: 1;
+    transition: opacity 0.8s ease;
+}
+
+h1.cyclingText.fadeOut {
+    opacity: 0;
+}
+
+.word {
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 3s ease;
+    margin-right: 0.3em;
+}
+
+.word.visible {
+    opacity: 1;
+}
+
+button {
+    background-color: #FFFFFF;
+    border: none;
+    color: #000000;
+    font-family: "Fredoka", sans-serif;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #E0E0E0;
+    padding: 25px 40px;
+}
+
+.snowflake {
+    position: fixed;
+    top: -10px;
+    color: #FFFFFF;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    z-index: -1;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotateZ(360deg) translateX(var(--drift, 0));
+    }
+}
+
+.snow-ground {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 450px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, #FFFFFF 100%);
+    z-index: 1;
+    pointer-events: none;
+    clip-path: polygon(
+        0% 65%,
+        2% 63%,
+        4% 60%,
+        6% 57%,
+        8% 54%,
+        10% 52%,
+        12% 50%,
+        14% 49%,
+        16% 50%,
+        18% 52%,
+        20% 55%,
+        22% 58%,
+        24% 62%,
+        26% 65%,
+        28% 68%,
+        30% 70%,
+        32% 71%,
+        34% 70%,
+        36% 68%,
+        38% 65%,
+        40% 60%,
+        42% 55%,
+        44% 50%,
+        46% 48%,
+        48% 47%,
+        50% 48%,
+        52% 50%,
+        54% 55%,
+        56% 60%,
+        58% 65%,
+        60% 70%,
+        62% 73%,
+        64% 75%,
+        66% 73%,
+        68% 70%,
+        70% 65%,
+        72% 58%,
+        74% 52%,
+        76% 48%,
+        78% 46%,
+        80% 48%,
+        82% 52%,
+        84% 58%,
+        86% 64%,
+        88% 70%,
+        90% 74%,
+        92% 76%,
+        94% 74%,
+        96% 70%,
+        98% 65%,
+        100% 60%,
+        100% 100%,
+        0% 100%
+    );
+}
+
+.chicken {
+    position: fixed;
+    bottom: 0;
+    font-size: 3em;
+    z-index: 10;
+}
+
+@keyframes peck {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes walk {
+    0% {
+        left: var(--start-pos);
+        transform: scaleX(1);
+    }
+    25% {
+        left: calc(var(--start-pos) + 80px);
+        transform: scaleX(1);
+    }
+    50% {
+        left: calc(var(--start-pos) + 150px);
+        transform: scaleX(-1);
+    }
+    75% {
+        left: calc(var(--start-pos) + 80px);
+        transform: scaleX(-1);
+    }
+    100% {
+        left: var(--start-pos);
+        transform: scaleX(1);
+    }
+}
+</style>
+
+<script>
+let mouseX = window.innerWidth / 2;
+const phrases = [
+    "Sup",
+    "Nothing to see here",
+    "I'm deeeefinately not playing games",
+    "Just a chicken, a cold one",
+    "(•_•)",
+    "( •_•)>⌐■-■",
+    "(⌐■_■)",
+    "Stay frosty, my chicken",
+    "OFFICERS IT WASN'T ME I SWEA-",
+    "Bawk bawk bawk",
+    "Why did the cold chicken cross the road?",
+    
+];
+
+let currentPhraseIndex = 0;
+
+function cycleText() {
+    const element = document.getElementById("cyclingText");
+    
+    // Fade out
+    element.classList.add("fadeOut");
+    
+    // Change text after fade out completes
+    setTimeout(() => {
+        currentPhraseIndex = Math.floor(Math.random() * phrases.length);
+        const phrase = phrases[currentPhraseIndex];
+        const words = phrase.split(" ");
+        
+        // Clear the element
+        element.innerHTML = "";
+        element.classList.remove("fadeOut");
+        
+        // Create span for each word
+        words.forEach((word) => {
+            const span = document.createElement("span");
+            span.className = "word";
+            span.textContent = word;
+            element.appendChild(span);
+        });
+        
+        // Fade in each word one by one
+        words.forEach((word, index) => {
+            setTimeout(() => {
+                element.children[index].classList.add("visible");
+            }, index * 200);
+        });
+    }, 800);
+}
+
+// Initial call and then cycle every 3.6 seconds (0.8s fade out + 0.8s fade in + 1s pause)
+cycleText();
+setInterval(cycleText, 3600);
+
+// Snowflake effect
+function createSnowflake() {
+    const snowflake = document.createElement("div");
+    snowflake.classList.add("snowflake");
+    snowflake.textContent = "❄";
+    
+    // Random horizontal position
+    const randomX = Math.random() * window.innerWidth;
+    snowflake.style.left = randomX + "px";
+    
+    // Random fall duration (3-8 seconds)
+    const duration = Math.random() * 5 + 3;
+    snowflake.style.animationDuration = duration + "s";
+    
+    // Random horizontal drift
+    const drift = Math.random() * 200 - 100;
+    snowflake.style.setProperty("--drift", drift + "px");
+    
+    document.body.appendChild(snowflake);
+    
+    // Remove snowflake after it falls
+    setTimeout(() => {
+        snowflake.remove();
+    }, duration * 1000);
+}
+
+// Create snowflakes continuously
+setInterval(createSnowflake, 300);
+
+// Create chickens on the snow ground
+function createChickens() {
+    const numChickens = 5;
+    const centerX = window.innerWidth / 2;
+    const spreadDistance = 150; // Distance to spread from center
+    
+    for (let i = 0; i < numChickens; i++) {
+        const chicken = document.createElement("div");
+        chicken.classList.add("chicken");
+        chicken.textContent = "🐔";
+        
+        // Spread chickens around the center
+        const angle = (i / numChickens) * Math.PI * 2;
+        const randomX = centerX + Math.cos(angle) * spreadDistance;
+        
+        chicken.style.left = randomX + "px";
+        chicken.style.setProperty("--start-pos", randomX + "px");
+        
+        // Random animation delay for variety
+        const delay = Math.random() * 6;
+        chicken.style.animationDelay = delay + "s";
+        
+        // Store current direction (1 = right, -1 = left)
+        chicken.direction = Math.random() > 0.5 ? 1 : -1;
+        chicken.style.transform = `scaleX(${chicken.direction})`;
+        
+        document.body.appendChild(chicken);
+    }
+}
+
+// Create chickens on page load
+createChickens();
+
+// Track mouse position
+document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+});
+
+// Move chickens randomly
+function moveChickensTowardCursor() {
+    const chickens = document.querySelectorAll(".chicken");
+    
+// Move chickens randomly
+    chickens.forEach((chicken, index) => {
+        const currentLeft = parseFloat(chicken.style.left) || 0;
+        
+        // Check if near edges
+        const edgeDistance = 50; // Distance from edge before turning around
+        const centerX = window.innerWidth / 2;
+        
+        // If at left edge, go right toward center
+        if (currentLeft < edgeDistance) {
+            chicken.randomDirection = 1;
+        }
+        // If at right edge, go left toward center
+        else if (currentLeft > window.innerWidth - edgeDistance) {
+            chicken.randomDirection = -1;
+        }
+        // If not at edge, change direction randomly
+        else {
+            if (!chicken.randomDirection) {
+                chicken.randomDirection = Math.random() > 0.5 ? 1 : -1;
+                chicken.randomTimer = 0;
+            }
+            
+            chicken.randomTimer = (chicken.randomTimer || 0) + 1;
+            
+            // Change direction every 60 frames
+            if (chicken.randomTimer > 60) {
+                chicken.randomDirection = Math.random() > 0.5 ? 1 : -1;
+                chicken.randomTimer = 0;
+            }
+        }
+        
+        let moveAmount = chicken.randomDirection * 1.5; // Random movement speed
+        
+        // Cap the max speed
+        const maxSpeed = 3;
+        if (moveAmount > maxSpeed) moveAmount = maxSpeed;
+        if (moveAmount < -maxSpeed) moveAmount = -maxSpeed;
+        
+        const newLeft = currentLeft + moveAmount;
+        chicken.style.left = newLeft + "px";
+        
+        // Calculate ground height at this chicken's position
+        const groundHeightMap = [
+            {pos: 0, height: 65},
+            {pos: 2, height: 63},
+            {pos: 4, height: 60},
+            {pos: 6, height: 57},
+            {pos: 8, height: 54},
+            {pos: 10, height: 52},
+            {pos: 12, height: 50},
+            {pos: 14, height: 49},
+            {pos: 16, height: 50},
+            {pos: 18, height: 52},
+            {pos: 20, height: 55},
+            {pos: 22, height: 58},
+            {pos: 24, height: 62},
+            {pos: 26, height: 65},
+            {pos: 28, height: 68},
+            {pos: 30, height: 70},
+            {pos: 32, height: 71},
+            {pos: 34, height: 70},
+            {pos: 36, height: 68},
+            {pos: 38, height: 65},
+            {pos: 40, height: 60},
+            {pos: 42, height: 55},
+            {pos: 44, height: 50},
+            {pos: 46, height: 48},
+            {pos: 48, height: 47},
+            {pos: 50, height: 48},
+            {pos: 52, height: 50},
+            {pos: 54, height: 55},
+            {pos: 56, height: 60},
+            {pos: 58, height: 65},
+            {pos: 60, height: 70},
+            {pos: 62, height: 73},
+            {pos: 64, height: 75},
+            {pos: 66, height: 73},
+            {pos: 68, height: 70},
+            {pos: 70, height: 65},
+            {pos: 72, height: 58},
+            {pos: 74, height: 52},
+            {pos: 76, height: 48},
+            {pos: 78, height: 46},
+            {pos: 80, height: 48},
+            {pos: 82, height: 52},
+            {pos: 84, height: 58},
+            {pos: 86, height: 64},
+            {pos: 88, height: 70},
+            {pos: 90, height: 74},
+            {pos: 92, height: 76},
+            {pos: 94, height: 74},
+            {pos: 96, height: 70},
+            {pos: 98, height: 65},
+            {pos: 100, height: 60}
+        ];
+        
+        // Normalize chicken position to 0-100%
+        const normalizedPos = (newLeft / window.innerWidth) * 100;
+        
+        // Find ground height at this position (interpolate between points)
+        let groundHeight = 65;
+        for (let i = 0; i < groundHeightMap.length - 1; i++) {
+            if (normalizedPos >= groundHeightMap[i].pos && normalizedPos <= groundHeightMap[i + 1].pos) {
+                const range = groundHeightMap[i + 1].pos - groundHeightMap[i].pos;
+                const ratio = (normalizedPos - groundHeightMap[i].pos) / range;
+                groundHeight = groundHeightMap[i].height + (groundHeightMap[i + 1].height - groundHeightMap[i].height) * ratio;
+                break;
+            }
+        }
+        
+        // Position chicken on ground
+        // The groundHeight % is the vertical position where the ground line is
+        // 0% = top, 100% = bottom. So 65% means 65% down from top = 35% from bottom
+        const percentFromBottom = 100 - groundHeight;
+        const bottomPixels = (percentFromBottom / 100) * 450;
+        chicken.style.bottom = (bottomPixels - 20) + "px";
+        
+        // Face the direction they're wandering
+        if (chicken.randomDirection === 1) {
+            chicken.style.transform = "scaleX(-1)";
+        } else {
+            chicken.style.transform = "scaleX(1)";
+        }
+    });
+    
+    // Push chickens apart to avoid overlap
+    for (let i = 0; i < chickens.length; i++) {
+        for (let j = i + 1; j < chickens.length; j++) {
+            const chicken1 = chickens[i];
+            const chicken2 = chickens[j];
+            const pos1 = parseFloat(chicken1.style.left) || 0;
+            const pos2 = parseFloat(chicken2.style.left) || 0;
+            const distance = Math.abs(pos2 - pos1);
+            const minDistance = 0; // Allow chickens to touch
+            
+            if (distance < minDistance) {
+                const overlap = minDistance - distance;
+                const push = overlap / 2 + 5;
+                
+                if (pos1 < pos2) {
+                    chicken1.style.left = (pos1 - push) + "px";
+                    chicken2.style.left = (pos2 + push) + "px";
+                } else {
+                    chicken1.style.left = (pos1 + push) + "px";
+                    chicken2.style.left = (pos2 - push) + "px";
+                }
+            }
+        }
+    }
+    
+    requestAnimationFrame(moveChickensTowardCursor);
+}
+
+moveChickensTowardCursor();
+</script>
