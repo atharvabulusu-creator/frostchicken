@@ -32,4 +32,23 @@ button:hover {
     background-color: #E0E0E0;
     padding: 25px 40px;
 }
+
+.snowflake {
+    position: fixed;
+    top: -10px;
+    color: #FFFFFF;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    z-index: -1;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotateZ(360deg) translateX(var(--drift, 0));
+    }
+}
 </style>
+<script src="snowflake.js"></script>
