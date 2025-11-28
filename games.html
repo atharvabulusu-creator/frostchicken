@@ -110,7 +110,6 @@ button {
 <script src="snowflake.js"></script>
 <body>
     <script>
-        // Define games as a list - add new games here
         const games = [
             {
                 id: '1v1lol',
@@ -127,12 +126,13 @@ button {
                 name: 'Stickman Hook',
                 icon: 'https://raw.githubusercontent.com/duckmath/icons/refs/heads/main/stickmanhook.webp',
             },
-            
-
-            // Add more games here in the same format
+            {
+                id: 'minecraft',
+                name: 'Minecraft',
+                icon: 'https://images.icon-icons.com/2699/PNG/512/minecraft_logo_icon_168974.png',
+            },
         ];
 
-        // Generate game buttons on page load
         function generateGames() {
             const gameGrid = document.getElementById('gameGrid');
             games.forEach(game => {
@@ -154,7 +154,6 @@ button {
             });
         }
 
-        // Generate games when the page loads
         document.addEventListener('DOMContentLoaded', generateGames);
     </script>
 </body>
