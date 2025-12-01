@@ -1,28 +1,204 @@
-// Snowflake effect - add to any page
-function createSnowflake() {
-    const snowflake = document.createElement("div");
-    snowflake.classList.add("snowflake");
-    snowflake.textContent = "❄";
-    
-    // Random horizontal position
-    const randomX = Math.random() * window.innerWidth;
-    snowflake.style.left = randomX + "px";
-    
-    // Random fall duration (3-8 seconds)
-    const duration = Math.random() * 5 + 3;
-    snowflake.style.animationDuration = duration + "s";
-    
-    // Random horizontal drift
-    const drift = Math.random() * 200 - 100;
-    snowflake.style.setProperty("--drift", drift + "px");
-    
-    document.body.appendChild(snowflake);
-    
-    // Remove snowflake after it falls
-    setTimeout(() => {
-        snowflake.remove();
-    }, duration * 1000);
-}
+/* Season decorations script
+   - Supports multiple seasonal sets (winter, spring, summer, autumn)
+   - Adds a small picker UI to change seasons (stored in localStorage)
+   - Injects required CSS and generates themed falling items
+*/
+(function(){
+    const SEASONS = {
+        winter: {
+            id: 'winter',
+            label: 'Winter',
+            char: '❄',
+            freq: 300,
+            size: [14, 28],
+            duration: [3, 8],
+            drift: [-100, 100],
+            zIndex: -1
+        },
+        spring: {
+            id: 'spring',
+            label: 'Spring',
+            char: '🌸',
+            freq: 260,
+            size: [16, 34],
+            duration: [4, 9],
+            drift: [-140, 140],
+            zIndex: -1
+        },
+        summer: {
+            id: 'summer',
+            label: 'Summer',
+            char: '☀️',
+            freq: 900,
+            size: [20, 44],
+            duration: [6, 12],
+            drift: [-50, 50],
+            zIndex: -1
+        },
+        autumn: {
+            id: 'autumn',
+            label: 'Autumn',
+            char: '🍂',
+            freq: 320,
+            size: [16, 32],
+            duration: [4, 9],
+            drift: [-200, 200],
+            zIndex: -1
+        }
+    };
 
-// Create snowflakes continuously
-setInterval(createSnowflake, 300);
+    let intervalId = null;
+    let activeSeason = localStorage.getItem('fc_active_season') || 'winter';
+    let styleInjected = false;
+
+    function injectStyles(){
+        if(styleInjected) return;
+        styleInjected = true;
+        const css = `
+        .season-item {
+            position: fixed;
+            top: -20px;
+            pointer-events: none;
+            user-select: none;
+            text-shadow: 0 0 5px rgba(0,0,0,0.2);
+            animation: fc-fall linear forwards;
+            transform-origin: center;
+        }
+        .season-winter { color: #ffffff; }
+        .season-spring { color: #ff7fc7; }
+        .season-summer { color: #ffd54a; }
+        .season-autumn { color: #d97706; }
+        @keyframes fc-fall {
+            to { transform: translateY(100vh) rotateZ(360deg) translateX(var(--drift,0)); }
+        }
+        /* Body backgrounds per season (use important to override inline styles) */
+        body.fc-season-winter { background: #ADD8E6 !important; }
+        body.fc-season-spring { background: linear-gradient(180deg, #c5f6ffff, #defaffff) !important; }
+        body.fc-season-summer { background: linear-gradient(180deg, #e8fffdff, #FFF7E0) !important; }
+        body.fc-season-autumn { background: linear-gradient(180deg, #fffde6ff, #FFE6D1) !important; }
+        .season-picker {
+            position: fixed;
+            left: 12px;
+            bottom: 12px;
+            z-index: 99999;
+            background: rgba(255,255,255,0.9);
+            border-radius: 8px;
+            padding: 6px 8px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+            font-family: sans-serif;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .season-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 6px 8px;
+            border-radius: 6px;
+        }
+        .season-btn.active { background: rgba(0,0,0,0.08); }
+        `;
+        const s = document.createElement('style');
+        s.setAttribute('data-generated','seasons');
+        s.textContent = css;
+        document.head.appendChild(s);
+    }
+
+    function rand(min,max){ return Math.random()*(max-min)+min; }
+
+    function clearExistingItems(){
+        const els = document.querySelectorAll('.season-item');
+        els.forEach(e=>e.remove());
+    }
+
+    function stopSeason(){
+        if(intervalId) clearInterval(intervalId);
+        intervalId = null;
+        clearExistingItems();
+    }
+
+    function startSeason(name){
+        stopSeason();
+        const cfg = SEASONS[name] || SEASONS.winter;
+        activeSeason = cfg.id;
+        localStorage.setItem('fc_active_season', activeSeason);
+        intervalId = setInterval(()=>createItem(cfg), cfg.freq);
+        for(let i=0;i<6;i++) setTimeout(()=>createItem(cfg), i*150);
+        updatePickerActive();
+        applyBodySeasonClass(activeSeason);
+    }
+
+    function createItem(cfg){
+        const el = document.createElement('div');
+        el.className = 'season-item season-'+cfg.id;
+        el.textContent = cfg.char;
+        const size = Math.round(rand(cfg.size[0], cfg.size[1]));
+        el.style.fontSize = size+'px';
+        const left = Math.round(Math.random()*window.innerWidth);
+        el.style.left = left+'px';
+        const duration = rand(cfg.duration[0], cfg.duration[1]);
+        el.style.animationDuration = duration+'s';
+        const drift = Math.round(rand(cfg.drift[0], cfg.drift[1]));
+        el.style.setProperty('--drift', drift+'px');
+        el.style.zIndex = cfg.zIndex;
+        document.body.appendChild(el);
+        setTimeout(()=>{ try{ el.remove(); }catch(e){} }, duration*1000 + 200);
+    }
+
+    function createPicker(){
+        if(document.querySelector('.season-picker')) return;
+        const picker = document.createElement('div');
+        picker.className = 'season-picker';
+        Object.values(SEASONS).forEach(s=>{
+            const btn = document.createElement('button');
+            btn.className = 'season-btn';
+            btn.title = s.label;
+            btn.innerHTML = s.char;
+            btn.dataset.season = s.id;
+            btn.addEventListener('click', ()=> startSeason(s.id));
+            picker.appendChild(btn);
+        });
+        const label = document.createElement('div');
+        label.style.fontSize = '12px';
+        label.style.opacity = '0.9';
+        label.style.marginLeft = '6px';
+        label.textContent = 'Season';
+        picker.appendChild(label);
+        document.body.appendChild(picker);
+        updatePickerActive();
+    }
+
+    function updatePickerActive(){
+        const btns = document.querySelectorAll('.season-btn');
+        btns.forEach(b=>{
+            b.classList.toggle('active', b.dataset.season === activeSeason);
+        });
+    }
+
+    function init(){
+        injectStyles();
+        const page = location.pathname.split('/').pop().toLowerCase();
+        const isIndex = page === '' || page === 'index.html' || page.includes('index');
+        if(isIndex) createPicker();
+        startSeason(activeSeason);
+        applyBodySeasonClass(activeSeason);
+        window.addEventListener('resize', ()=>{});
+    }
+
+    function applyBodySeasonClass(name){
+        document.body.classList.remove('fc-season-winter','fc-season-spring','fc-season-summer','fc-season-autumn');
+        document.body.classList.add('fc-season-'+name);
+    }
+
+    window.FrostChickenSeasons = {
+        setSeason: startSeason,
+        getSeason: ()=> activeSeason,
+        stop: stopSeason
+    };
+
+    if(document.readyState === 'complete' || document.readyState === 'interactive') init();
+    else document.addEventListener('DOMContentLoaded', init);
+
+})();

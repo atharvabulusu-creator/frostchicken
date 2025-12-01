@@ -66,23 +66,7 @@ button:hover {
     padding: 25px 40px;
 }
 
-.snowflake {
-    position: fixed;
-    top: -10px;
-    color: #FFFFFF;
-    font-size: 1.5em;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-    z-index: -1;
-    pointer-events: none;
-    animation: fall linear forwards;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(100vh) rotateZ(360deg) translateX(var(--drift, 0));
-    }
-}
+.season-item { }
 
 .snow-ground {
     position: fixed;
@@ -149,6 +133,31 @@ button:hover {
         100% 100%,
         0% 100%
     );
+}
+
+/* Per-season ground styles (applied via body class set by snowflake.js) */
+body.fc-season-winter .snow-ground {
+    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, #ffffff 100%);
+    box-shadow: inset 0 60px 80px rgba(230,240,255,0.6);
+    height: 450px;
+}
+
+body.fc-season-spring .snow-ground {
+    background: linear-gradient(180deg,#FFB7C5 0%, #FFB7C5 60%, #FFB7C5 100%);
+    box-shadow: inset 0 40px 80px rgba(180, 230, 190, 0.4);
+    height: 380px;
+}
+
+body.fc-season-summer .snow-ground {
+    background: linear-gradient(180deg,#d39231 0%, #ffeaa1 60%, #ffcf7c 100%);
+    box-shadow: inset 0 30px 60px rgba(255, 220, 150, 0.25);
+    height: 300px;
+}
+
+body.fc-season-autumn .snow-ground {
+    background: linear-gradient(180deg,#fff3e6 0%, #ffc584 60%, #d97706 100%);
+    box-shadow: inset 0 40px 80px rgba(220,150,80,0.25);
+    height: 420px;
 }
 
 .chicken {
@@ -236,23 +245,7 @@ function cycleText() {
 }
 cycleText();
 setInterval(cycleText, 3600);
-function createSnowflake() {
-    const snowflake = document.createElement("div");
-    snowflake.classList.add("snowflake");
-    snowflake.textContent = "❄";
-    const randomX = Math.random() * window.innerWidth;
-    snowflake.style.left = randomX + "px";
-    const duration = Math.random() * 5 + 3;
-    snowflake.style.animationDuration = duration + "s";
-    const drift = Math.random() * 200 - 100;
-    snowflake.style.setProperty("--drift", drift + "px");
-    document.body.appendChild(snowflake);
-    setTimeout(() => {
-        snowflake.remove();
-    }, duration * 1000);
-}
-
-setInterval(createSnowflake, 300);
+// snowflake effect is handled by snowflake.js
 
 function createChickens() {
     const numChickens = 5;
@@ -406,3 +399,4 @@ function moveChickensTowardCursor() {
 }
 moveChickensTowardCursor();
 </script>
+<script src="snowflake.js"></script>
