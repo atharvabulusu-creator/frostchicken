@@ -71,23 +71,14 @@
     </style>
 </head>
 <body>
-    <button class="home-button" onclick="location.href='index.html'" aria-label="Home">
+    <button class="home-button" id="home-button" onclick="location.href='index.html'" aria-label="Home">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 13h2v8h4v-6h4v6h4v-8h2L12 5 3 13z"/>
         </svg>
     </button>
     <h1>Settings</h1>
-    <p>Working on ts</p>
-    <button onclick="openInBlankTab()">Open Site in about:blank Tab</button>
+    <p>Idk what to put here</p>
 
     <script src="snowflake.js"></script>
-    <script>
-function openInBlankTab(){
-    var win=window.open("about:blank","_blank");
-    if(!win)return;
-    win.document.write(document.documentElement.outerHTML);
-    win.document.close();
-}
-    </script>
 </body>
 </html>

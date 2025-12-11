@@ -1,6 +1,10 @@
 <title>Frost Chicken | Games</title>
 <h1>Games</h1>
+<script>
+    var first = true;
+</script>
 <div class="gameGrid" id="gameGrid"></div>
+
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
@@ -12,7 +16,7 @@ body {
     margin: 0;
 }
 
-.home-button {
+.home-button{
     position: fixed;
     top: 10px;
     left: 10px;
@@ -85,7 +89,7 @@ body {
     aspect-ratio: 1;
     border-radius: 12px;
     overflow: hidden;
-    background: #ADD8E6;
+    background: #fffde6ff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -119,7 +123,7 @@ body {
 }
 
 button {
-    background-color: #ADD8E6;
+    background-color: #fffde6ff;
     border: none;
     color: #000000;
     font-family: "Fredoka", sans-serif;
@@ -160,6 +164,7 @@ button {
         <path d="M3 13h2v8h4v-6h4v6h4v-8h2L12 5 3 13z"/>
     </svg>
 </button>
+<button class="about-blank-btn" onclick="openPageInBlankTab()">Open in about:blank</button>
 <script src="snowflake.js"></script>
 <body>
     <script>
@@ -420,7 +425,17 @@ button {
                 gameGrid.appendChild(link);
             });
         }
-
+        if (first) {
         document.addEventListener('DOMContentLoaded', generateGames);
+        }
+    </script>
+    <script>
+        function openPageInBlankTab() {
+            var first = false;
+            var win=window.open("about:blank","_blank");
+            if(!win)return;
+            win.document.write(document.documentElement.outerHTML);
+            win.document.close();
+        }
     </script>
 </body>

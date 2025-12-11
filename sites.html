@@ -46,8 +46,8 @@ body {
 
         .home-button:hover svg {
             width: 32px;
-            height: 32px;
-        }button {
+            height: 32px;}
+button {
     background-color: #FFFFFF;
     border: none;
     color: #000000;
@@ -100,6 +100,7 @@ iframe {
         <path d="M3 13h2v8h4v-6h4v6h4v-8h2L12 5 3 13z"/>
     </svg>
 </button>
+<button class="about-blank-btn" onclick="openPageInBlankTab()">Open in about:blank</button>
 <script src="snowflake.js"></script>
         <body>
             <iframe id="frame" class="frame" src="" allowfullscreen></iframe>
@@ -123,3 +124,11 @@ iframe {
                 }
                 
             </script>
+            <script>
+        function openPageInBlankTab() {
+            var win=window.open("about:blank","_blank");
+            if(!win)return;
+            win.document.write(document.documentElement.outerHTML);
+            win.document.close();
+        }
+    </script>

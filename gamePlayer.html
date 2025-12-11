@@ -10,12 +10,14 @@
         }
     </script>
     <style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
+            font-family: Fredoka, sans-serif;
             width: 100vw;
             height: 100vh;
             overflow: hidden;
@@ -60,9 +62,26 @@
             justify-content: center;
             transition: none !important;
         }
+    .about-blank-btn {
+        font-family: Fredoka, sans-serif;
+        border: none !important;
+        padding: 0 !important;
+        cursor: pointer;
+        z-index: 1000;
+        width: 100% !important;
+        height: 20px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: none !important;
+        background-color:#fffde6ff;
+    }
 
         .home-button:hover {
             background: none !important;
+            padding: 0 !important;
+        }
+        .about-blank-btn:hover {
             padding: 0 !important;
         }
 
@@ -84,6 +103,7 @@
             <path d="M3 13h2v8h4v-6h4v6h4v-8h2L12 5 3 13z"/>
         </svg>
     </button>
+    <button class="about-blank-btn" onclick="openPageInBlankTab()">Open in about:blank</button>
     <div class="game-container">
         <div class="loading">Loading game...</div>
         <iframe id="gameFrame"></iframe>
@@ -101,6 +121,14 @@
             };
         } else {
             document.querySelector('.loading').textContent = 'No game URL provided';
+        }
+    </script>
+        <script>
+        function openPageInBlankTab() {
+            var win=window.open("about:blank","_blank");
+            if(!win)return;
+            win.document.write(document.documentElement.outerHTML);
+            win.document.close();
         }
     </script>
 </body>
