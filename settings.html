@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<html>
 <head>
     <title>Frost Chicken | Settings</title>
     <style>
@@ -12,6 +11,39 @@
             margin: 0;
             padding-left: 0;
             padding-right: 0;
+        }
+
+        .home-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: none !important;
+            border: none !important;
+            padding: 0 !important;
+            cursor: pointer;
+            z-index: 1000;
+            width: 40px !important;
+            height: 40px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: none !important;
+        }
+
+        .home-button:hover {
+            background: none !important;
+            padding: 0 !important;
+        }
+
+        .home-button svg {
+            width: 24px;
+            height: 24px;
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .home-button:hover svg {
+            width: 32px;
+            height: 32px;
         }
 
         button {
@@ -39,21 +71,23 @@
     </style>
 </head>
 <body>
+    <button class="home-button" onclick="location.href='index.html'" aria-label="Home">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 13h2v8h4v-6h4v6h4v-8h2L12 5 3 13z"/>
+        </svg>
+    </button>
     <h1>Settings</h1>
     <p>Working on ts</p>
     <button onclick="openInBlankTab()">Open Site in about:blank Tab</button>
 
     <script src="snowflake.js"></script>
     <script>
-        function openInBlankTab() {
-            const siteUrl = window.location.origin + window.location.pathname.replace('settings.html', 'index.html');
-            const blankTab = window.open('about:blank', '_blank');
-            if (blankTab) {
-                setTimeout(function() {
-                    blankTab.location.href = siteUrl;
-                }, 100);
-            }
-        }
+function openBlank(){
+    var win=window.open("about:blank","_blank");
+    if(!win)return;
+    win.document.write(document.documentElement.outerHTML);
+    win.document.close();
+}
     </script>
 </body>
 </html>

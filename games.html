@@ -1,6 +1,5 @@
 <title>Frost Chicken | Games</title>
 <h1>Games</h1>
-
 <div class="gameGrid" id="gameGrid"></div>
 
 <style>
@@ -11,6 +10,55 @@ body {
     text-align: center;
     padding: 20px;
     margin: 0;
+}
+
+.home-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer;
+    z-index: 1000;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: none !important;
+}
+
+.home-button:hover {
+    background: none !important;
+    padding: 0 !important;
+}
+
+.home-button svg {
+    width: 24px;
+    height: 24px;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.home-button:hover svg {
+    width: 32px;
+    height: 32px;
 }
 
 .gameGrid {
@@ -107,6 +155,11 @@ button {
 }
 
 </style>
+<button class="home-button" onclick="location.href='index.html'" aria-label="Home">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 13h2v8h4v-6h4v6h4v-8h2L12 5 3 13z"/>
+    </svg>
+</button>
 <script src="snowflake.js"></script>
 <body>
     <script>
