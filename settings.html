@@ -1,34 +1,59 @@
-<title>Frost Chicken | Settings</title>
-<h1>Settings</h1>
-<p>Working on ts</p>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
-body {
-    background-color: #ADD8E6;
-    font-family: "Fredoka", sans-serif;
-    text-align: center;
-    padding-top: 20px;
-    margin: 0;
-    padding-left: 0;
-    padding-right: 0;
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Frost Chicken | Settings</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+        body {
+            background-color: #ADD8E6;
+            font-family: "Fredoka", sans-serif;
+            text-align: center;
+            padding-top: 20px;
+            margin: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
 
-.snowflake {
-    position: fixed;
-    top: -10px;
-    color: #FFFFFF;
-    font-size: 1.5em;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-    z-index: -1;
-    pointer-events: none;
-    animation: fall linear forwards;
-}
+        button {
+            background-color: #FFFFFF;
+            border: none;
+            color: #000000;
+            font-family: "Fredoka", sans-serif;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 12px;
+            box-shadow: 0 4px #999;
+            transition: all 0.3s ease;
+        }
 
-@keyframes fall {
-    to {
-        transform: translateY(100vh) rotateZ(360deg) translateX(var(--drift, 0));
-    }
-}
-</style>
-<script src="snowflake.js"></script>
+        button:hover {
+            background-color: #E0E0E0;
+            padding: 25px 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Settings</h1>
+    <p>Working on ts</p>
+    <button onclick="openInBlankTab()">Open Site in about:blank Tab</button>
+
+    <script src="snowflake.js"></script>
+    <script>
+        function openInBlankTab() {
+            const siteUrl = window.location.origin + window.location.pathname.replace('settings.html', 'index.html');
+            const blankTab = window.open('about:blank', '_blank');
+            if (blankTab) {
+                setTimeout(function() {
+                    blankTab.location.href = siteUrl;
+                }, 100);
+            }
+        }
+    </script>
+</body>
+</html>
