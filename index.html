@@ -133,29 +133,28 @@ button:hover {
     );
 }
 
-/* Per-season ground styles (applied via body class set by snowflake.js) */
 body.fc-season-winter .snow-ground {
     background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, #ffffff 100%);
     box-shadow: inset 0 60px 80px rgba(230,240,255,0.6);
-    height: 450px;  /* Uniform height for winter */
+    height: 450px;
 }
 
 body.fc-season-spring .snow-ground {
     background: linear-gradient(180deg,#FFB7C5 0%, #FFB7C5 60%, #FFB7C5 100%);
     box-shadow: inset 0 40px 80px rgba(180, 230, 190, 0.4);
-    height: 450px;  /* Uniform height for spring */
+    height: 450px;
 }
 
 body.fc-season-summer .snow-ground {
     background: linear-gradient(180deg,#d39231 0%, #ffeaa1 60%, #ffcf7c 100%);
     box-shadow: inset 0 30px 60px rgba(255, 220, 150, 0.25);
-    height: 450px;  /* Uniform height for summer */
+    height: 450px;
 }
 
 body.fc-season-autumn .snow-ground {
     background: linear-gradient(180deg,#fff3e6 0%, #ffc584 60%, #d97706 100%);
     box-shadow: inset 0 40px 80px rgba(220,150,80,0.25);
-    height: 450px;  /* Uniform height for autumn */
+    height: 450px;
 }
 
 .chicken {
@@ -244,7 +243,6 @@ function cycleText() {
 }
 cycleText();
 setInterval(cycleText, 3600);
-// snowflake effect is handled by snowflake.js
 
 function createChickens() {
     const numChickens = 5;
@@ -400,8 +398,6 @@ moveChickensTowardCursor();
 </script>
 <script src="snowflake.js"></script>
 <script>
-// Set the active season here (options: 'winter', 'spring', 'summer', 'autumn')
-// Change the season by editing the value below:
 setTimeout(()=>{
     if(window.FrostChickenSeasons){
         window.FrostChickenSeasons.setSeason('winter');

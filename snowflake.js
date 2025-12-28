@@ -1,8 +1,3 @@
-/* Season decorations script
-   - Supports multiple seasonal sets (winter, spring, summer, autumn)
-   - Adds a small picker UI to change seasons (stored in localStorage)
-   - Injects required CSS and generates themed falling items
-*/
 (function(){
     const SEASONS = {
         winter: {
@@ -123,8 +118,6 @@
         document.body.appendChild(el);
         setTimeout(()=>{ try{ el.remove(); }catch(e){} }, duration*1000 + 200);
     }
-
-    // picker functions removed - control seasons with FrostChickenSeasons.setSeason(name)
 
     function init(){
         injectStyles();
