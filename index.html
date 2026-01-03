@@ -1,16 +1,45 @@
 <link rel="icon" type="image/png" sizes="500x500" href="https://images.emojiterra.com/google/android-11/512px/1f414.png">
 <script src="siteSettings.js"></script>
 <title>Frost Chicken</title>
+<body>
+    
 <h1>Frost Chicken</h1>
+<div class="clouds">
+  <div class="layer1">
+    <div class="cloud" style="left: 0;"></div>
+    <div class="cloud" style="left: 600px;"></div>
+  </div>
 
+  <div class="layer2">
+    <div class="cloud" style="left: 200px;"></div>
+    <div class="cloud" style="left: 900px;"></div>
+  </div>
+
+  <div class="layer3">
+    <div class="cloud" style="left: 400px;"></div>
+    <div class="cloud" style="left: 1100px;"></div>
+  </div>
+
+</div>
 <h1 class="cyclingText" id="cyclingText">Sup</h1>
-<button class="Sites" onclick="location.href='sites.html'">Proxy and Game Sites</button>
-<button class="Games" onclick="location.href='games.html'">Games</button>
-<button class="About" onclick="location.href='about.html'">About</button>
-<button class="Partners" onclick="location.href='partners.html'">Partners</button>
-<button class="Settings" onclick="location.href='settings.html'">Settings</button>
+<div class="sideBar" id="sideBar">
+<button class="Home" title="Home" onclick="location.href='index.html'">🏠</button>
+<button class="Sites" title="Sites" onclick="location.href='sites.html'">🌐</button>
+<button class="Games" title="Games" onclick="location.href='games.html'">🎮</button>
+<button class="About" title="About" onclick="location.href='about.html'">ℹ️</button>
+<button class="Partners" title="Partners" onclick="location.href='partners.html'">🤝</button>
+<button class="Settings" title="Settings" onclick="location.href='settings.html'">⚙️</button>
+
+</div>
+<div class="description" id="description">
+<h2>Frost Chicken, the best site for all your unblocked needs.</h2>
+<h2>We have many proxies, games, and more!</h2>
+<h2>Enjoy your stay!</h2>
+<h2>❄️🐔</h2>
+</div>
 <div class="snow-ground" id="snowGround"></div>
 
+</body>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 body {
@@ -23,15 +52,79 @@ body {
     padding-right: 0;
 }
 
+div.sideBar {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #cddfe5;
+    opacity: 1;
+    border-radius: 8px;
+    z-index: 500;
+}
+div.sideBar button {
+    background-color: #FFFFFF;
+    border: none;
+    color: #000000;
+    font-family: "Fredoka", sans-serif;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    margin: 35px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+div.sideBar button.Home {
+    background-color: #a9eee5;
+    padding: 20px 20px;
+}
+
+div.sideBar button:hover {
+    font-size: 50px;
+}
+
+div.description {
+    margin: 150px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #cddfe5;
+    opacity: 1;
+    border-radius: 8px;
+    z-index: 500;
+    max-width: 500px;
+    border: none;
+    color: #000000;
+    font-family: "Fredoka", sans-serif;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+    
+}
+
 h1.cyclingText {
     font-size: 28px;
     font-weight: 600;
     opacity: 1;
     transition: opacity 0.8s ease;
+    z-index: 50;
 }
 
 h1.cyclingText.fadeOut {
     opacity: 0;
+    z-index: 50;
 }
 
 .word {
@@ -39,7 +132,78 @@ h1.cyclingText.fadeOut {
     opacity: 0;
     transition: opacity 3s ease;
     margin-right: 0.3em;
+    z-index: 50;
 }
+
+  .clouds {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 50vh;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cloud {
+    position: absolute;
+    background: white;
+    width: 300px;
+    height: 110px;
+    border-radius: 100px;
+    z-index: 0;
+  }
+
+  .cloud:before,
+  .cloud:after {
+    content: "";
+    position: absolute;
+    background: white;
+    border-radius: 100px;
+    z-index: 0;
+  }
+
+  .cloud:before {
+    width: 160px;
+    height: 130px;
+    top: -50px;
+    left: 20px;
+    z-index: 0;
+}
+
+  .cloud:after {
+    width: 200px;
+    height: 140px;
+    top: -40px;
+    left: 110px;
+    z-index: 0;
+  }
+
+  @keyframes drift {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-150%); }
+  }
+
+  .layer1 .cloud {
+    top: 5%;
+    animation: drift 60s linear infinite;
+    opacity: 0.9;
+    z-index: 0;
+  }
+
+  .layer2 .cloud {
+    top: 20%;
+    animation: drift 90s linear infinite;
+    opacity: 0.75;
+    z-index: 0;
+  }
+
+  .layer3 .cloud {
+    top: 35%;
+    animation: drift 120s linear infinite;
+    opacity: 0.65;
+    z-index: 0;
+  }
 
 .word.visible {
     opacity: 1;

@@ -1,15 +1,25 @@
 <link rel="icon" type="image/png" sizes="500x500" href="https://images.emojiterra.com/google/android-11/512px/1f414.png">
 <script src="siteSettings.js"></script>
 <title>Frost Chicken | Sites</title>
+
 <h1>Sites</h1>
-<button onclick="openDuckmath()">Open Duckmath (In this tab)</button>
-<button onclick="openSelenite()">Open Selenite (In this tab)</button>
-<button onclick="openDogeUB()">Open Doge Unblocker (In this tab)</button>
-<button onclick="openT9os()">Open T9os(VM) (In this tab)</button>
-<button onclick="openRoblox()">Open Roblox (In this tab)</button>
-<button onclick="openUbx()">Open Ubx (In this tab)</button>
-<button onclick="openRefinedStuffs()">Open Refined Stuffs (In this tab)</button>
-<button onclick="openDemon()">Open Demon (In this tab)</button><style>
+
+<div class="sideBar" id="sideBar">
+<button class="Home" title="Home" onclick="location.href='index.html'">🏠</button>
+<button class="Sites" title="Sites" onclick="location.href='sites.html'">🌐</button>
+<button class="Games" title="Games" onclick="location.href='games.html'">🎮</button>
+<button class="About" title="About" onclick="location.href='about.html'">ℹ️</button>
+<button class="Partners" title="Partners" onclick="location.href='partners.html'">🤝</button>
+<button class="Settings" title="Settings" onclick="location.href='settings.html'">⚙️</button>
+</div>
+<button onclick="openDuckmath()">Open Duckmath</button>
+<button onclick="openSelenite()">Open Selenite</button>
+<button onclick="openDogeUB()">Open Doge Unblocker</button>
+<button onclick="openT9os()">Open T9os(VM)</button>
+<button onclick="openRoblox()">Open Roblox</button>
+<button onclick="openUbx()">Open Ubx</button>
+<button onclick="openRefinedStuffs()">Open Refined Stuffs</button>
+<button onclick="openDemon()">Open Demon</button><style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 body {
     background-color: #ADD8E6;
@@ -20,38 +30,42 @@ body {
     padding-left: 0;
     padding-right: 0;
 }
-
-.home-button {
+div.sideBar {
     position: fixed;
-    top: 10px;
-    left: 10px;
-    background: none !important;
-    border: none !important;
-    padding: 0 !important;
-    cursor: pointer;
-    z-index: 1000;
-    width: 40px !important;
-    height: 40px !important;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: none !important;
+    flex-direction: column;
+    background-color: #cddfe5;
+    opacity: 1;
+    border-radius: 8px;
+    z-index: 500;
+}
+div.sideBar button {
+    background-color: #FFFFFF;
+    border: none;
+    color: #000000;
+    font-family: "Fredoka", sans-serif;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    margin: 35px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+}
+div.sideBar button.Sites {
+    background-color: #a9eee5;
+    padding: 20px 20px;
 }
 
-.home-button:hover {
-    background: none !important;
-    padding: 0 !important;
+div.sideBar button:hover {
+    font-size: 50px;
 }
-
-        .home-button svg {
-            width: 24px;
-            height: 24px;
-            transition: width 0.3s ease, height 0.3s ease;
-        }
-
-        .home-button:hover svg {
-            width: 32px;
-            height: 32px;}
 button {
     background-color: #FFFFFF;
     border: none;
@@ -100,47 +114,34 @@ iframe {
 }
 
 </style>
-<button class="home-button" onclick="location.href='index.html'" aria-label="Home">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 13h2v8h4v-6h4v6h4v-8h2L12 5 3 13z"/>
-    </svg>
-</button>
 <script src="snowflake.js"></script>
         <body>
             <iframe id="frame" class="frame" src="" allowfullscreen></iframe>
 
             <script>
                 function openDuckmath() {
-                    const frame = document.getElementById('frame');
-                    frame.src = 'https://duckmath.org';
+                window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://duckmath.org");
                 }
                 function openSelenite() {
-                    const frame = document.getElementById('frame');
-                    frame.src = 'https://selenite.cc';
+                window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://selenite.cc");
                 }
                 function openDogeUB() {
-                    const frame = document.getElementById('frame');
-                    frame.src = 'https://o1.doge.motorcycles/';
+                window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://o1.doge.motorcycles/");
                 }
                 function openT9os() {
-                    const frame = document.getElementById('frame');
-                    frame.src = 'https://t9os.vercel.app';
+                window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://t9os.vercel.app");
                 }
                 function openRoblox() {
-                    const frame = document.getElementById('frame');
-                    frame.src = 'https://108.ip.nowgg.fun/apps/a/19900/b.html';
+                    window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://108.ip.nowgg.fun/apps/a/19900/b.html");
                 }
                 function openUbx() {
-                    const frame = document.getElementById('frame');
-                    frame.src = 'https://learningrooms.b-cdn.net/web?nocloak';
+                    window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://learningrooms.b-cdn.net/web?nocloak");
                 }
                 function openRefinedStuffs() {
-                    const frame = document.getElementById('frame');
-                    frame.src = 'https://learnstuffs-f3dwfhcvaka2cxgx.canadacentral-01.azurewebsites.net/';
+                    window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://learnstuffs-f3dwfhcvaka2cxgx.canadacentral-01.azurewebsites.net/");
                 }
                 function openDemon() {
-                    const frame = document.getElementById('frame');
-                    frame.src = 'https://demonzero.space';
+                    window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://demonzero.space");
                 }
 
             </script>
