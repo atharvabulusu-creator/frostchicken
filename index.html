@@ -37,6 +37,26 @@
 <h2>Enjoy your stay!</h2>
 <h2>❄️🐔</h2>
 </div>
+</div>
+<div class="battery" id="battery"></div>
+<script>
+  if (navigator.getBattery) {
+    navigator.getBattery().then(function(battery) {
+
+      function updateBattery() {
+        const percent = Math.round(battery.level * 100);
+        document.getElementById("battery").textContent =
+        percent + "%";
+      }
+      updateBattery();
+      battery.addEventListener("levelchange", updateBattery);
+    });
+  } else {
+    document.getElementById("batteryDisplay").textContent =
+      "Battery API not supported on this device.";
+  }
+</script>
+
 <div class="snow-ground" id="snowGround"></div>
 
 </body>
@@ -50,6 +70,12 @@ body {
     margin: 0;
     padding-left: 0;
     padding-right: 0;
+}
+div.description:hover {
+    padding: 25px 35px;
+}
+div.battery:hover {
+    padding: 35px 35px;
 }
 
 div.sideBar {
@@ -90,11 +116,10 @@ div.sideBar button:hover {
 }
 
 div.description {
-    margin: 150px;
+    margin-top: 150px;
     transform: translateY(-50%);
     display: flex;
     align-items: center;
-    flex-direction: column;
     background-color: #cddfe5;
     opacity: 1;
     border-radius: 8px;
@@ -108,6 +133,28 @@ div.description {
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 4px #999;
+    transition: all 0.3s ease;
+    
+}
+div.battery {
+    display: flex;
+    align-items: center;
+    background-color: #cddfe5;
+    opacity: 1;
+    border-radius: 8px;
+    z-index: 500;
+    min-width: 50px;
+    min-height:50px;
+    border: none;
+    color: #000000;
+    font-family: "Fredoka", sans-serif;
+    padding: 30px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 50px;
     font-weight: 600;
     box-shadow: 0 4px #999;
     transition: all 0.3s ease;
