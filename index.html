@@ -97,14 +97,13 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 body {
-    background-color: #ADD8E6;
-    font-family: "Fredoka", sans-serif;
-    text-align: center;
-    padding-top: 20px;
-    margin: 0;
-    padding-left: 0;
-    padding-right: 0;
+  position: relative;
+  background-color: #ADD8E6;
+  font-family: "Fredoka", sans-serif;
+  text-align: center;
+  margin: 0;
 }
+
 div.description:hover {
     padding: 25px 35px;
 }
@@ -179,7 +178,7 @@ div.battery {
     opacity: 1;
     border-radius: 8px;
     z-index: 500;
-    min-width: 50px;
+    min-width:50px;
     min-height:50px;
     border: none;
     color: #000000;
@@ -216,15 +215,15 @@ h1.cyclingText.fadeOut {
     z-index: 50;
 }
 
-  .clouds {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 50vh;
-    pointer-events: none;
-    z-index: 0;
-  }
+.clouds {
+  position: fixed;
+  inset: 0;
+  width: 200%;
+  height: 50vh;
+  pointer-events: none;
+  z-index: -1;
+}
+
 
   .cloud {
     position: absolute;
@@ -289,6 +288,16 @@ h1.cyclingText.fadeOut {
 .word.visible {
     opacity: 1;
 }
+h1,
+.cyclingText,
+.description,
+.battery,
+.sideBar,
+.chicken {
+  position: relative;
+  z-index: 10;
+}
+
 
 button {
     background-color: #FFFFFF;

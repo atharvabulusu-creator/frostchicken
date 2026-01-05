@@ -14,15 +14,15 @@
 <button class="Proxy" title="Frosty Proxy" onclick="location.href='proxy.html'">🌀</button>
 </div>
 <div style="margin-top:40px; display:flex; flex-wrap:wrap; justify-content:center; gap:20px; max-width:1500px; margin-left:120px;">
-<button onclick="openDuckmath()">Open Duckmath</button>
-<button onclick="openSelenite()">Open Selenite</button>
-<button onclick="openDogeUB()">Open Doge Unblocker</button>
-<button onclick="openT9os()">Open T9os(VM)</button>
-<button onclick="openRoblox()">Open Roblox</button>
-<button onclick="openUbx()">Open Ubx</button>
-<button onclick="openRefinedStuffs()">Open Refined Stuffs</button>
-<button onclick="openDemon()">Open Demon</button>
-<button onclick="openQzStar()">Open qz-star(proxy)</button>
+<button onclick="openSite('https://duckmath.org')">Open Duckmath</button>
+<button onclick="openSite('https://support.sghub.co.za/')">Open Selenite</button>
+<button onclick="openSite('https://o1.doge.motorcycles/')">Open Doge Unblocker</button>
+<button onclick="openSite('https://t9os.vercel.app')">Open T9os</button>
+<button onclick="openSite('https://108.ip.nowgg.fun/apps/a/19900/b.html')">Open Roblox</button>
+<button onclick="openSite('https://learningrooms.b-cdn.net/web?nocloak')">Open Ubx</button>
+<button onclick="openSite('https://learnstuffs-f3dwfhcvaka2cxgx.canadacentral-01.azurewebsites.net/')">Open Refined Stuffs</button>
+<button onclick="openSite('https://demonzero.space')">Open Demon</button>
+<button onclick="openSite('https://qz-star.vercel.app/')">Open qz-star(proxy)</button>
 </div>
 <style>
     
@@ -118,31 +118,7 @@ button:hover {
         <body>
 
             <script>
-                function openDuckmath() {
-                window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://duckmath.org");
-                }
-                function openSelenite() {
-                window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://support.sghub.co.za/");
-                }
-                function openDogeUB() {
-                window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://o1.doge.motorcycles/");
-                }
-                function openT9os() {
-                window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://t9os.vercel.app");
-                }
-                function openRoblox() {
-                    window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://108.ip.nowgg.fun/apps/a/19900/b.html");
-                }
-                function openUbx() {
-                    window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://learningrooms.b-cdn.net/web?nocloak");
-                }
-                function openRefinedStuffs() {
-                    window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://learnstuffs-f3dwfhcvaka2cxgx.canadacentral-01.azurewebsites.net/");
-                }
-                function openDemon() {
-                    window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://demonzero.space");
-                }
-                function openQzStar() {
-                    window.location.href = "/gamePlayer.html?url=" + encodeURIComponent("https://qz-star.vercel.app/");
+                function openSite(SiteURL) {
+                window.location.href = "/gamePlayer.html?url=" + encodeURIComponent(SiteURL);
                 }
             </script>

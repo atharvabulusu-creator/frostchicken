@@ -1,7 +1,7 @@
 <link rel="icon" type="image/png" sizes="500x500" href="https://images.emojiterra.com/google/android-11/512px/1f414.png">
-<script src="siteSettings.js"></script>
+<script src="partnersettings.js"></script>
 <title>Frost Chicken | Partners</title>
-
+<body>
 <h1>Partners</h1>
 <div class="sideBar" id="sideBar">
 <button class="Home" title="Home" onclick="location.href='index.html'">🏠</button>
@@ -12,12 +12,8 @@
 <button class="Settings" title="Settings" onclick="location.href='settings.html'">⚙️</button>
 <button class="Proxy" title="Frosty Proxy" onclick="location.href='proxy.html'">🌀</button>
 </div>
-<button onclick="location.href='https://discord.gg/5Zv49Hf6FF'" type="image"><img src="https://cdn.discordapp.com/icons/1449472834257686570/2a50e8db74cd69f4dfc35d8b74c62291.webp" alt="Lucent"></button>
-<button onclick="location.href='https://discord.gg/tdtHujSCwp'" type="image"><img src="https://cdn.discordapp.com/icons/1438694049912590499/6a67711e57de7d30a9e7a43a65cd50f1.webp" alt="Refined Stuff"></button>
-<button onclick="location.href='https://discord.gg/pHFgfaqd9p'" type="image"><img src="https://cdn.discordapp.com/icons/1454974830993604854/207b1af2cbea6eeec4345cc996281306.webp" alt="Salty Network"></button>
-<button onclick="location.href='https://discord.gg/42hZFVEjkC'" type="image"><img src="https://cdn.discordapp.com/icons/1450303639670227109/5db087b9999f3ad189dc0bf5ea07abff.webp" alt="UBX"></button>
-<button onclick="location.href='https://discord.gg/k2mMZHFxSw'" type="image"><img src="https://cdn.discordapp.com/icons/1454538945525186785/4dceb28990205f51c5f3df7ce0216440.webp" alt="Galaxy UBG"></button>
-<button onclick="location.href='https://www.youtube.com/@offensive-asian'" type="image"><img src="https://yt3.googleusercontent.com/f8kyuYw7-cftbL8G7ZP3BWBwNQsv-ObWeSybDpWzuEyZve75I52KUxbdFIx8njeWxJGKduDZeQ=s160-c-k-c0x00ffffff-no-rj" alt="Offensive Asian"></button>
+<div class="partnerGrid" id="partnerGrid"></div>
+</body>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 body {
@@ -66,29 +62,89 @@ div.sideBar button.Partners {
 div.sideBar button:hover {
     font-size: 50px;
 }
-button {
-    border: none;
-    color: #000000;
-    font-family: "Fredoka", sans-serif;
-    padding: 20px 20px;
-    text-align: center;
+.partnerGrid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 15px;
+    max-width: 90%;
+    padding: 0;
+    margin-left: 150px;
+}
+.app-icon-card {
     text-decoration: none;
-    display: inline-block;
-    margin: 10px;
     cursor: pointer;
-    border-radius: 12px;
-    box-shadow: 0 4px #999;
     transition: all 0.3s ease;
 }
 
-button img {
-    width: 75px;
-    height: 75px;
+.app-icon-card:hover {
+    transform: scale(1.05);
+} 
+
+.app-icon-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
     border-radius: 12px;
-    transition: all 0.3s ease;
+    overflow: hidden;
+    background: #cddfe5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-button:hover {
-    padding: 30px 30px;
+
+.app-icon-image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.app-icon-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.app-icon-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: rgba(0, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(15px);
+    transition:
+        background 0.3s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.app-icon-title {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    padding: 8px 10px;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.app-icon-card:hover .app-icon-overlay {
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.app-icon-card:hover .app-icon-title {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .snowflake {
@@ -110,3 +166,66 @@ button:hover {
 }
 </style>
 <script src="snowflake.js"></script>
+<script>
+    const partners = [
+        {
+            id: 'amethyst',
+            name: 'Amethyst',
+            icon: 'https://cdn.discordapp.com/icons/1438694049912590499/00f1d9fdc9c934c64e5d5352aa3c7cc3.webp',
+            url: 'https://discord.gg/tdtHujSCwp'
+        },
+        {
+            id: 'lucent',
+            name: 'Lucent',
+            icon: 'https://cdn.discordapp.com/icons/1449472834257686570/2a50e8db74cd69f4dfc35d8b74c62291.webp',
+            url: 'https://discord.gg/5Zv49Hf6FF'
+        },
+        {
+            id: 'salty-network',
+            name: 'Salty Network',
+            icon: 'https://cdn.discordapp.com/icons/1454974830993604854/207b1af2cbea6eeec4345cc996281306.webp',
+            url: 'https://discord.gg/pHFgfaqd9p'
+        },
+        {
+            id: 'ubx',
+            name: 'UBX',
+            icon: 'https://cdn.discordapp.com/icons/1450303639670227109/5db087b9999f3ad189dc0bf5ea07abff.webp',
+            url: 'https://discord.gg/42hZFVEjkC'
+        },
+        {
+            id: 'galaxy-ubg',
+            name: 'Galaxy UBG',
+            icon: 'https://cdn.discordapp.com/icons/1454538945525186785/4dceb28990205f51c5f3df7ce0216440.webp',
+            url: 'https://discord.gg/k2mMZHFxSw'
+        },
+        {
+            id: 'offensive-asian',
+            name: 'Offensive Asian',
+            icon: 'https://yt3.googleusercontent.com/f8kyuYw7-cftbL8G7ZP3BWBwNQsv-ObWeSybDpWzuEyZve75I52KUxbdFIx8njeWxJGKduDZeQ=s160-c-k-c0x00ffffff-no-rj',
+            url: 'https://www.youtube.com/@offensive-asian'
+        }
+    ]
+    function generatepartners() {
+                const partnerGrid = document.getElementById('partnerGrid');
+                partners.forEach(partner => {
+                const link = document.createElement('a');
+                link.href = partner.url;
+                link.className = 'app-icon-card';
+                link.setAttribute('data-testid', `app_icon_${partner.id}`);
+                
+                link.innerHTML = `
+                    <div class="app-icon-container">
+                    <div class="app-icon-image-wrapper">
+                    <img loading="lazy" src="${partner.icon}" alt="${partner.name}" class="app-icon-image">
+                    </div>
+                    <div class="app-icon-overlay">
+                    <div class="app-icon-title">${partner.name}</div>
+                    </div>
+                    </div>`;
+
+                
+                partnerGrid.appendChild(link);
+            });
+        }
+    document.addEventListener('DOMContentLoaded', generatepartners);
+</script>
